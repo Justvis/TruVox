@@ -29,91 +29,84 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Scrollable Card Content -->
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
+    <!-- Box  app:layout_constraintTop_toBottomOf="@id/logo" -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/textContainer"
+        android:layout_width="360dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="#80F3E7E7"
         app:layout_constraintTop_toBottomOf="@id/logo"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardElevation="0dp"
+        android:padding="16dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/textContainer"
-            android:layout_width="360dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="16dp"
-            app:cardBackgroundColor="#80F3E7E7"
-            app:cardElevation="0dp"
-            android:padding="16dp">
+            android:orientation="vertical"
+            android:padding="16dp"
+            >
 
-            <LinearLayout
+            <!-- Welcome  -->
+            <TextView
+                android:id="@+id/welcomeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome"
+                android:textColor="@color/tru_text"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/welcomeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:text="@string/welcome_to_our_transgender_voice_coaching_app"
+                android:textColor="@color/tru_text"
+                android:textSize="16sp" />
 
-                <!-- Welcome -->
-                <TextView
-                    android:id="@+id/welcomeTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/welcome"
-                    android:textColor="@color/tru_text"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+            <!-- Introduction  -->
+            <TextView
+                android:layout_marginTop="4dp"
+                android:id="@+id/introductionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/introduction"
+                android:textColor="@color/tru_text"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/welcomeText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/welcome_to_our_transgender_voice_coaching_app"
-                    android:textColor="@color/tru_text"
-                    android:textSize="16sp" />
+            <TextView
+                android:id="@+id/introductionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_to_truvox_a_prototype_voice_coaching_app_that_aims_to_help_transfeminine_individuals_practice_changing_their_voice_in_different_ways_truvox_is_still_being_developed_currently_focuses_on_speakers_of_american_english_and_is_not_currently_intended_to_be_used_as_a_complete_gender_affirming_voice_training_regimen_we_recommend_combining_it_with_a_human_coach_and_other_sources_of_information"
+                android:textColor="@color/tru_text"
+                android:textSize="16sp" />
 
-                <!-- Introduction -->
-                <TextView
-                    android:id="@+id/introductionTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/introduction"
-                    android:textColor="@color/tru_text"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+            <!-- About  -->
+            <TextView
+                android:layout_marginTop="4dp"
+                android:id="@+id/aboutTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About"
+                android:textColor="@color/tru_text"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/introductionText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/welcome_to_truvox_a_prototype_voice_coaching_app_that_aims_to_help_transfeminine_individuals_practice_changing_their_voice_in_different_ways_truvox_is_still_being_developed_currently_focuses_on_speakers_of_american_english_and_is_not_currently_intended_to_be_used_as_a_complete_gender_affirming_voice_training_regimen_we_recommend_combining_it_with_a_human_coach_and_other_sources_of_information"
-                    android:textColor="@color/tru_text"
-                    android:textSize="16sp" />
-
-                <!-- About -->
-                <TextView
-                    android:id="@+id/aboutTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="About"
-                    android:textColor="@color/tru_text"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/aboutText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Insert info from 'About' page on website here"
-                    android:textColor="@color/tru_text"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </ScrollView>
+            <TextView
+                android:id="@+id/aboutText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Insert info from 'About' page on website here"
+                android:textColor="@color/tru_text"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="tru_text">#242483</color>
     <color name="tru_header">#8477AA</color>
+    <color name="nav_bar">#6C6879</color>
 </resources>
