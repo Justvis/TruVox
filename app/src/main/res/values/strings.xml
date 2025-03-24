@@ -9,4 +9,6 @@
     <string name="welcome_to_truvox_a_prototype_voice_coaching_app_that_aims_to_help_transfeminine_individuals_practice_changing_their_voice_in_different_ways_truvox_is_still_being_developed_currently_focuses_on_speakers_of_american_english_and_is_not_currently_intended_to_be_used_as_a_complete_gender_affirming_voice_training_regimen_we_recommend_combining_it_with_a_human_coach_and_other_sources_of_information">
     Welcome to TruVox a prototype voice coaching app that aims to help transfeminine individuals practice changing their voice in different ways TruVox is still being developed currently focuses on speakers of american english and is not currently intended to be used as a complete gender affirming voice training regimen we recommend combining it with a human coach and other sources of information
     </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
