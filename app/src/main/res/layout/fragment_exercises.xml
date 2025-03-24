@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_flipped">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Excercises"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="17dp"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:textColor="@color/tru_header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="8dp"/>
+
+    <!-- Settings Icon -->
+    <ImageView
+        android:id="@+id/settingsIcon"
+        android:layout_width="47dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="14dp"
+        android:contentDescription="Settings Icon"
+        android:src="@drawable/gear_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Buttons Container -->
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="200dp"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/constantPitchButton"
+            style="@style/truButton"
+            android:background="@drawable/tru_button"
+            android:theme="@style/truButton"
+            android:layout_width="273dp"
+            android:layout_height="58dp"
+            android:textSize="20dp"
+            android:text="Videos" />
+
+        <Button
+            android:id="@+id/stairPitchButton"
+            style="@style/truButton"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/tru_button"
+            android:layout_width="273dp"
+            android:layout_height="58dp"
+            android:textSize="20dp"
+            android:text="Pitch" />
+
+        <Button
+            android:id="@+id/heteronymsPitchButton"
+            style="@style/truButton"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/tru_button"
+            android:layout_width="273dp"
+            android:layout_height="58dp"
+            android:textSize="20dp"
+            android:text="Pitch and Volume" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

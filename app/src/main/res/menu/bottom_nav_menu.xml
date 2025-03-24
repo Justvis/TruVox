@@ -4,16 +4,25 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/home_icon"
-        android:title="@string/title_home" />
+        android:title="Home" />
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ex_icon"
-        android:title="Excercises" />
-
-    <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_assessment"
         android:icon="@drawable/assess_icon"
         android:title="Assessment" />
 
+    <item
+        android:id="@+id/navigation_exercises"
+        android:icon="@drawable/ex_icon"
+        android:title="Exercises" />
+
+    <item
+        android:id="@+id/navigation_pitch"
+        android:icon="@drawable/gear_icon"
+        android:title="Pitch" />
+
+    <item
+        android:id="@+id/navigation_pitchvol"
+        android:icon="@drawable/gear_icon"
+        android:title="Pitch &amp; Volume" />
 </menu>

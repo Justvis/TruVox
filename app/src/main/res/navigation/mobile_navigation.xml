@@ -2,24 +2,36 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.truvox.ui.home.HomeFragment"
-        android:label=""
+        android:label="Home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.truvox.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_assessment"
+        android:name="com.example.truvox.ui.assessment.AssessmentFragment"
+        android:label="Assessment"
+        tools:layout="@layout/fragment_assessment" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.truvox.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_exercises"
+        android:name="com.example.truvox.ui.exercises.ExercisesFragment"
+        android:label="Exercises"
+        tools:layout="@layout/fragment_exercises" />
+
+    <fragment
+        android:id="@+id/navigation_pitch"
+        android:name="com.example.truvox.ui.ex_pitch.ExPitchFragment"
+        android:label="Pitch"
+        tools:layout="@layout/fragment_ex_pitch" />
+
+    <fragment
+        android:id="@+id/navigation_pitchvol"
+        android:name="com.example.truvox.ui.ex_pitchvol.ExPitchvolFragment"
+        android:label="Pitch &amp; Volume"
+        tools:layout="@layout/fragment_ex_pitchvol" />
 </navigation>
