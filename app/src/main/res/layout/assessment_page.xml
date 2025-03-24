@@ -13,7 +13,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pitch"
+        android:text="Assessment"
         android:layout_marginTop="14dp"
         android:layout_marginLeft="17dp"
         android:textSize="40sp"
@@ -46,41 +46,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="60pt"
+            android:textColor="@color/tru_text"
+            android:textAlignment="center"
+            android:textSize="22dp"
+            android:text="To begin your voice assessment, record your voice reading the transcript prompts on the next pages."
+            />
+
         <!-- Buttons -->
         <Button
             android:id="@+id/constantPitchButton"
             style="@style/truButton"
             android:background="@drawable/tru_button"
             android:theme="@style/truButton"
-            android:text="Constant" />
+            android:layout_marginTop="25dp"
+            android:width="20dp"
+            android:layout_height="58dp"
+            android:text="Begin" />
 
-        <Button
-            android:id="@+id/stairPitchButton"
-            style="@style/truButton"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/tru_button"
-            android:text="Stair" />
-
-        <Button
-            android:id="@+id/heteronymsPitchButton"
-            style="@style/truButton"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/tru_button"
-            android:text="Heteronyms" />
-
-        <Button
-            android:id="@+id/humancurvePitchButton"
-            style="@style/truButton"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/tru_button"
-            android:text="Human Curve" />
-
-        <Button
-            android:id="@+id/changintPitchButton"
-            style="@style/truButton"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/tru_button"
-            android:text="Chanting" />
 
 
     </LinearLayout>
