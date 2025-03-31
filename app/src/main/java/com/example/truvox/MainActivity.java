@@ -9,6 +9,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import android.content.Intent;
+import android.widget.ImageButton;
 
 import com.example.truvox.databinding.ActivityMainBinding;
 
@@ -23,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setSupportActionBar(binding.toolbar);
         setContentView(binding.getRoot());
+
+        ImageButton settingsBtn = findViewById(R.id.settingsIcon);
+        settingsBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        });
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
 

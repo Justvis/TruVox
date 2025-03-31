@@ -21,7 +21,7 @@
         android:id="@+id/navigation_exercises"
         android:name="com.example.truvox.ui.exercises.ExercisesFragment"
         android:label=""
-        tools:layout="@layout/fragment_exercises" />
+        tools:layout="@layout/fragment_exercises_menu" />
 
     <fragment
         android:id="@+id/navigation_pitch"
