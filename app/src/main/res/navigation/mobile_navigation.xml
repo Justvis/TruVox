@@ -5,33 +5,59 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/navigation_home">
 
+    <!-- Top-level tabs -->
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.truvox.ui.home.HomeFragment"
-        android:label=""
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_assessment"
         android:name="com.example.truvox.ui.assessment.AssessmentFragment"
-        android:label=""
         tools:layout="@layout/fragment_assessment" />
 
     <fragment
         android:id="@+id/navigation_exercises"
-        android:name="com.example.truvox.ui.exercises.ExercisesFragment"
-        android:label=""
-        tools:layout="@layout/fragment_exercises_menu" />
+        android:name="com.example.truvox.ui.exercises.ExercisesMenuFragment"
+        tools:layout="@layout/fragment_exercises_menu">
 
+        <!-- Subpage navigation actions with popUpTo -->
+        <action
+            android:id="@+id/action_navigation_exercises_to_navigation_pitch"
+            app:destination="@id/navigation_pitch"
+            app:popUpTo="@id/navigation_exercises"
+            app:popUpToInclusive="false" />
+
+        <action
+            android:id="@+id/action_navigation_exercises_to_navigation_pitchvol"
+            app:destination="@id/navigation_pitchvol"
+            app:popUpTo="@id/navigation_exercises"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <!-- Pitch Fragment -->
     <fragment
         android:id="@+id/navigation_pitch"
         android:name="com.example.truvox.ui.ex_pitch.ExPitchFragment"
-        android:label=""
-        tools:layout="@layout/fragment_ex_pitch" />
+        tools:layout="@layout/fragment_ex_pitch">
+        <action
+            android:id="@+id/action_navigation_pitch_to_navigation_constant_exercise"
+            app:destination="@id/navigation_constant_exercise" />
+    </fragment>
 
+    <!-- Pitch+Volume Fragment -->
     <fragment
         android:id="@+id/navigation_pitchvol"
         android:name="com.example.truvox.ui.ex_pitchvol.ExPitchvolFragment"
-        android:label=""
-        tools:layout="@layout/fragment_ex_pitchvol" />
+        tools:layout="@layout/fragment_ex_pitchvol">
+        <action
+            android:id="@+id/action_navigation_pitchvol_to_navigation_constant_exercise"
+            app:destination="@id/navigation_constant_exercise" />
+    </fragment>
+
+    <!-- Constant Exercise Fragment -->
+    <fragment
+        android:id="@+id/navigation_constant_exercise"
+        android:name="com.example.truvox.ui.exercises.ConstantExerciseFragment"
+        tools:layout="@layout/exercise_page" />
 </navigation>

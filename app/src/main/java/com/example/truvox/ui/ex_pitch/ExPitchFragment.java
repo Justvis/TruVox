@@ -1,46 +1,33 @@
 package com.example.truvox.ui.ex_pitch;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import com.example.truvox.SettingsActivity;
-import com.example.truvox.databinding.FragmentExPitchBinding;
+import androidx.navigation.Navigation;
+import com.example.truvox.R;
 
 public class ExPitchFragment extends Fragment {
 
-    private FragmentExPitchBinding binding;
+    public ExPitchFragment() {}
 
-    public ExPitchFragment() {
-        // Required empty public constructor
-    }
-
+    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentExPitchBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_ex_pitch, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.settingsIcon.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), SettingsActivity.class);
-            startActivity(intent);
-        });
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+        Button constantButton = view.findViewById(R.id.constantPitchButton);
+        constantButton.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_navigation_pitch_to_navigation_constant_exercise));
     }
 }

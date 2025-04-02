@@ -1,5 +1,6 @@
 package com.example.truvox.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -7,8 +8,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.content.Intent;
 
+import com.example.truvox.SettingsActivity;
 import com.example.truvox.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
@@ -27,7 +28,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.settingsIcon.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), com.example.truvox.SettingsActivity.class);
+            Intent intent = new Intent(getActivity(), SettingsActivity.class);
             startActivity(intent);
         });
     }

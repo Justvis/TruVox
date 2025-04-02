@@ -53,8 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            >
+            android:padding="16dp">
 
             <!-- Welcome  -->
             <TextView
@@ -64,8 +63,7 @@
                 android:text="@string/welcome"
                 android:textColor="@color/tru_text"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/welcomeText"
@@ -77,10 +75,10 @@
 
             <!-- Introduction  -->
             <TextView
-                android:layout_marginTop="4dp"
                 android:id="@+id/introductionTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="@string/introduction"
                 android:textColor="@color/tru_text"
                 android:textSize="20sp"
@@ -96,10 +94,10 @@
 
             <!-- About  -->
             <TextView
-                android:layout_marginTop="4dp"
                 android:id="@+id/aboutTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="About"
                 android:textColor="@color/tru_text"
                 android:textSize="20sp"

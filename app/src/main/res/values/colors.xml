@@ -15,4 +15,6 @@
     <color name="seekbar_thumb_fill">#F5F5F5</color>
     <color name="seekbar_thumb_border">#8FACDA</color>
     <color name="seekbar_middle">#A0ADD9</color>
+    <color name="dark_purple">#6C6879</color>
+    <color name="bottom_nav_selector">#6C6879</color>"
 </resources>
