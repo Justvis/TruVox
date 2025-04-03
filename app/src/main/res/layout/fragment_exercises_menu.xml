@@ -15,9 +15,9 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        android:text="Excercises"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Exercises"
         android:textColor="@color/tru_header"
         android:textSize="40sp"
         android:textStyle="bold"
@@ -76,7 +76,7 @@
             android:layout_width="273dp"
             android:layout_height="58dp"
             android:textSize="20dp"
-            android:text="Pitch and Volume" />
+            android:text="Pitch &amp; Volume" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
