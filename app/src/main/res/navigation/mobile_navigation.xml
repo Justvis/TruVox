@@ -33,6 +33,11 @@
             app:destination="@id/navigation_pitchvol"
             app:popUpTo="@id/navigation_exercises"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_navigation_exercises_to_navigation_video"
+            app:destination="@id/navigation_video"
+            app:popUpTo="@id/navigation_exercises"
+            app:popUpToInclusive="false"/>
     </fragment>
 
     <!-- Pitch Fragment -->
@@ -60,4 +65,27 @@
         android:id="@+id/navigation_constant_exercise"
         android:name="com.example.truvox.ui.exercises.ConstantExerciseFragment"
         tools:layout="@layout/exercise_page" />
+    <fragment
+        android:id="@+id/navigation_video"
+        android:name="com.example.truvox.ui.videos.VideoFragment"
+        android:label="fragment_video"
+        tools:layout="@layout/fragment_video" >
+        <action
+            android:id="@+id/action_navigation_video_to_navigation_warmup_videos"
+            app:destination="@id/navigation_warmup_videos"
+            app:popUpToInclusive="false"/>
+        <action
+            android:id="@+id/action_navigation_video_to_navigation_tutorials"
+            app:destination="@id/navigation_tutorials" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_warmup_videos"
+        android:name="com.example.truvox.ui.videos.WarmupVideosFragment"
+        android:label="fragment_warmup_videos"
+        tools:layout="@layout/fragment_warmup_videos" />
+    <fragment
+        android:id="@+id/navigation_tutorials"
+        android:name="com.example.truvox.ui.videos.TutorialVideoFragment"
+        android:label="fragment_tutorials"
+        tools:layout="@layout/fragment_tutorials" />
 </navigation>

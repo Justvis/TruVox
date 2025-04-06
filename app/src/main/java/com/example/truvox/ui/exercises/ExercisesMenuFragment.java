@@ -49,6 +49,8 @@ public class ExercisesMenuFragment extends Fragment {
         binding.pitchVolumeButton.setOnClickListener(v ->
                 navController.navigate(R.id.action_navigation_exercises_to_navigation_pitchvol)
         );
+
+        binding.videosButton.setOnClickListener(v -> navController.navigate(R.id.action_navigation_exercises_to_navigation_video));
     }
 
     @Override

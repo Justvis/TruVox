@@ -2,6 +2,8 @@ package com.example.truvox;
 
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
