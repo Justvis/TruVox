@@ -14,18 +14,18 @@ import androidx.navigation.Navigation;
 
 import com.example.truvox.R;
 import com.example.truvox.SettingsActivity;
-import com.example.truvox.databinding.StairExercisePageBinding;
+import com.example.truvox.databinding.HeteronymsExercisePageBinding;
 
-public class StairExerciseFragment extends Fragment {
+public class HeteronymsExerciseFragment extends Fragment {
 
-    private StairExercisePageBinding binding;
+    private HeteronymsExercisePageBinding binding;
 
-    public StairExerciseFragment() {}
+    public HeteronymsExerciseFragment() {}
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        binding = StairExercisePageBinding.inflate(inflater, container, false);
+        binding = HeteronymsExercisePageBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

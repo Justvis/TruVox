@@ -31,7 +31,19 @@ public class ExPitchFragment extends Fragment {
                 Navigation.findNavController(v).navigate(R.id.action_navigation_pitch_to_navigation_constant_exercise));
 
         Button stairButton = view.findViewById(R.id.stairPitchButton);
-        constantButton.setOnClickListener(v ->
+        stairButton.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.action_navigation_pitch_to_navigation_stair_exercise));
+
+        Button heteronymsButton = view.findViewById(R.id.heteronymsPitchButton);
+        heteronymsButton.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_navigation_pitch_to_navigation_heteronyms_exercise));
+
+        Button humanCurveButton = view.findViewById(R.id.humancurvePitchButton);
+        humanCurveButton.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_navigation_pitch_to_navigation_human_curve_exercise));
+
+        Button chantingButton = view.findViewById(R.id.chantingPitchButton);
+        chantingButton.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_navigation_pitch_to_navigation_chanting_exercise));
     }
 }

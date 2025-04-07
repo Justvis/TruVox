@@ -50,6 +50,12 @@ public class ConstantExerciseFragment extends Fragment {
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+    @Override
     public void onPause(){
         super.onPause();
         requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);

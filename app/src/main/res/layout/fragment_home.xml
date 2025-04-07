@@ -68,6 +68,7 @@
                     android:textColor="@color/tru_text"
                     android:textSize="30sp"
                     android:textStyle="bold"
+                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="12dp" />
 
                 <TextView
@@ -77,6 +78,7 @@
                     android:text="@string/welcome_to_our_transgender_voice_coaching_app"
                     android:textColor="@color/tru_text"
                     android:textSize="20sp"
+                    android:lineSpacingExtra="8dp"
                     android:layout_marginBottom="24dp" />
 
                 <!-- Introduction -->
@@ -88,7 +90,8 @@
                     android:textColor="@color/tru_text"
                     android:textSize="26sp"
                     android:textStyle="bold"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp" />
 
                 <TextView
                     android:id="@+id/introductionText"
@@ -97,7 +100,7 @@
                     android:text="@string/welcome_to_truvox_a_prototype_voice_coaching_app_that_aims_to_help_transfeminine_individuals_practice_changing_their_voice_in_different_ways_truvox_is_still_being_developed_currently_focuses_on_speakers_of_american_english_and_is_not_currently_intended_to_be_used_as_a_complete_gender_affirming_voice_training_regimen_we_recommend_combining_it_with_a_human_coach_and_other_sources_of_information"
                     android:textColor="@color/tru_text"
                     android:textSize="20sp"
-                    android:lineSpacingExtra="6dp"
+                    android:lineSpacingExtra="8dp"
                     android:layout_marginBottom="24dp" />
 
                 <!-- About -->
@@ -105,19 +108,42 @@
                     android:id="@+id/aboutTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="About"
+                    android:text="@string/about"
                     android:textColor="@color/tru_text"
                     android:textSize="26sp"
                     android:textStyle="bold"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp" />
 
                 <TextView
                     android:id="@+id/aboutText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Insert info from 'About' page on website here"
+                    android:text="@string/truvox_was_developed_by_the_university_of_cincinnati_department_of_electrical_and_computer_engineering_under_supervision_of_prof_vesna_novak_contributors_include_xiangyi_wang_sam_weese_om_jadhav_victoria_mckenna_maggie_lyon_ansh_bhanushali_rey_hicks_and_tyler_diloreto_the_project_was_funded_by_the_national_institute_of_deafness_and_communication_disorders_project_r21dc021537_and_by_a_collaborative_pilot_grant_from_the_university_of_cincinnati_office_of_research_the_pitch_calculation_and_display_code_is_based_on_code_by_mark_huckvale_university_college_london_sentences_for_the_chanting_exercise_were_previously_published_in_stemple_et_al_clinical_voice_pathology_theory_and_management_2020_the_app_is_still_in_development_and_updates_are_added_regularly"
                     android:textColor="@color/tru_text"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:lineSpacingExtra="8dp"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:id="@+id/aboutTextTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/our_group_aims_to_provide_free_and_accessible_gender_affirming_voice_coaching_software_that_can_be_used_by_trans_people_as_a_supplement_to_professional_voice_coaching_or_as_a_stand_alone_tool_by_trans_people_who_cannot_access_professional_voice_coaching_we_acknowledge_that_pitch_is_not_the_only_component_of_gender_affirming_voice_coaching_but_have_focused_on_it_in_this_first_app_since_it_is_easily_understood_by_beginners_in_the_future_we_plan_to_expand_to_apps_for_coaching_resonance_and_other_aspects_of_transgender_voice"
+                    android:textColor="@color/tru_text"
+                    android:textSize="20sp"
+                    android:lineSpacingExtra="8dp"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:id="@+id/aboutTextThree"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/if_you_would_like_to_discuss_the_project_feel_free_to_reach_out_to_prof_novak_at_novakdn_ucmail_uc_edu"
+                    android:textColor="@color/tru_text"
+                    android:textSize="20sp"
+                    android:lineSpacingExtra="8dp" />
+
             </LinearLayout>
         </ScrollView>
     </androidx.cardview.widget.CardView>

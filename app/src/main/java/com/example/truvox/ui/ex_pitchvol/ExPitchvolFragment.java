@@ -29,5 +29,13 @@ public class ExPitchvolFragment extends Fragment {
         Button constantButton = view.findViewById(R.id.constantPitchButton);
         constantButton.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.action_navigation_pitchvol_to_navigation_constant_exercise));
+
+        Button stairButton = view.findViewById(R.id.stairPitchButton);
+        stairButton.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_navigation_pitchvol_to_navigation_stair_exercise));
+
+        Button heteronymsButton = view.findViewById(R.id.heteronymsPitchButton);
+        heteronymsButton.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_navigation_pitchvol_to_navigation_heteronyms_exercise));
     }
 }

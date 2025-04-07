@@ -51,6 +51,15 @@
         <action
             android:id="@+id/action_navigation_pitch_to_navigation_stair_exercise"
             app:destination="@id/navigation_stair_exercise" />
+        <action
+            android:id="@+id/action_navigation_pitch_to_navigation_heteronyms_exercise"
+            app:destination="@id/navigation_heteronyms_exercise" />
+        <action
+            android:id="@+id/action_navigation_pitch_to_navigation_human_curve_exercise"
+            app:destination="@id/navigation_human_curve_exercise" />
+        <action
+            android:id="@+id/action_navigation_pitch_to_navigation_chanting_exercise"
+            app:destination="@id/navigation_chanting_exercise" />
     </fragment>
 
     <!-- Pitch+Volume Fragment -->
@@ -64,6 +73,9 @@
         <action
             android:id="@+id/action_navigation_pitchvol_to_navigation_stair_exercise"
             app:destination="@id/navigation_stair_exercise" />
+        <action
+            android:id="@+id/action_navigation_pitchvol_to_navigation_heteronyms_exercise"
+            app:destination="@id/navigation_heteronyms_exercise" />
     </fragment>
 
     <!-- Constant Exercise Fragment -->
@@ -76,6 +88,21 @@
         android:id="@+id/navigation_stair_exercise"
         android:name="com.example.truvox.ui.exercises.StairExerciseFragment"
         tools:layout="@layout/stair_exercise_page" />
+
+    <fragment
+        android:id="@+id/navigation_heteronyms_exercise"
+        android:name="com.example.truvox.ui.exercises.HeteronymsExerciseFragment"
+        tools:layout="@layout/heteronyms_exercise_page" />
+
+    <fragment
+        android:id="@+id/navigation_human_curve_exercise"
+        android:name="com.example.truvox.ui.exercises.HumanCurveExerciseFragment"
+        tools:layout="@layout/human_curve_exercise_page" />
+
+    <fragment
+        android:id="@+id/navigation_chanting_exercise"
+        android:name="com.example.truvox.ui.exercises.ChantingExerciseFragment"
+        tools:layout="@layout/chanting_exercise_page" />
 
     <fragment
         android:id="@+id/navigation_video"
