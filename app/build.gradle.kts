@@ -32,6 +32,8 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    sourceSets["main"].java.srcDirs("src/main/java", "libs")
 }
 
 dependencies {
@@ -47,5 +49,6 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(libs.mpandroidchart)
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
 }
