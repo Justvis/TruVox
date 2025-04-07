@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 import com.example.truvox.R;
 import com.example.truvox.SettingsActivity;
 import com.example.truvox.databinding.ExercisePageBinding;
+import android.content.pm.ActivityInfo;
 
 public class ConstantExerciseFragment extends Fragment {
 
@@ -40,6 +41,18 @@ public class ConstantExerciseFragment extends Fragment {
         binding.imageButton.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.navigation_home);
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     @Override
