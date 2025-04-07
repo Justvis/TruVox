@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_navigation_pitch_to_navigation_constant_exercise"
             app:destination="@id/navigation_constant_exercise" />
+        <action
+            android:id="@+id/action_navigation_pitch_to_navigation_stair_exercise"
+            app:destination="@id/navigation_stair_exercise" />
     </fragment>
 
     <!-- Pitch+Volume Fragment -->
@@ -58,6 +61,9 @@
         <action
             android:id="@+id/action_navigation_pitchvol_to_navigation_constant_exercise"
             app:destination="@id/navigation_constant_exercise" />
+        <action
+            android:id="@+id/action_navigation_pitchvol_to_navigation_stair_exercise"
+            app:destination="@id/navigation_stair_exercise" />
     </fragment>
 
     <!-- Constant Exercise Fragment -->
@@ -65,6 +71,12 @@
         android:id="@+id/navigation_constant_exercise"
         android:name="com.example.truvox.ui.exercises.ConstantExerciseFragment"
         tools:layout="@layout/exercise_page" />
+
+    <fragment
+        android:id="@+id/navigation_stair_exercise"
+        android:name="com.example.truvox.ui.exercises.StairExerciseFragment"
+        tools:layout="@layout/stair_exercise_page" />
+
     <fragment
         android:id="@+id/navigation_video"
         android:name="com.example.truvox.ui.videos.VideoFragment"

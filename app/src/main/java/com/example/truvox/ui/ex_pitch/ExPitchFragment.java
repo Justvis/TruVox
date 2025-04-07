@@ -29,5 +29,9 @@ public class ExPitchFragment extends Fragment {
         Button constantButton = view.findViewById(R.id.constantPitchButton);
         constantButton.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.action_navigation_pitch_to_navigation_constant_exercise));
+
+        Button stairButton = view.findViewById(R.id.stairPitchButton);
+        constantButton.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_navigation_pitch_to_navigation_stair_exercise));
     }
 }
