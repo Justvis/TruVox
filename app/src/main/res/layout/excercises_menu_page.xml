@@ -56,7 +56,6 @@
             android:theme="@style/truButton"
             android:layout_width="273dp"
             android:layout_height="58dp"
-            android:textSize="20dp"
             android:text="Videos" />
 
         <Button
@@ -66,7 +65,6 @@
             android:background="@drawable/tru_button"
             android:layout_width="273dp"
             android:layout_height="58dp"
-            android:textSize="20dp"
             android:text="Pitch" />
 
         <Button
@@ -76,9 +74,7 @@
             android:background="@drawable/tru_button"
             android:layout_width="273dp"
             android:layout_height="58dp"
-            android:textSize="20dp"
             android:text="Pitch and Volume" />
-
 
 
 

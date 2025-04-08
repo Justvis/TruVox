@@ -1,16 +1,19 @@
+
 package com.example.truvox.ui.exercises;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Handler;
-import android.os.Looper;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -48,18 +51,24 @@ public class ConstantExerciseFragment extends Fragment {
     private float chartBottomY;
 
     private float targetPitch = 220f;
+    private static final float TOLERANCE = 10f;
+    private static final int EXERCISE_DURATION_MS = 15_000; // Set to 15 seconds
 
     private boolean isRecording = false;
-
     private boolean isExerciseRunning = false;
 
-    private static final float TOLERANCE = 10f;
-
-    private android.os.Handler stopHandler = new android.os.Handler();
+    private Handler stopHandler = new Handler();
     private Runnable stopRunnable;
+
+    private Handler countdownHandler = new Handler(Looper.getMainLooper());
+    private Handler progressHandler = new Handler(Looper.getMainLooper());
+    private Runnable progressRunnable;
 
     private int score = 0;
     private int totalPoints = 0;
+
+    private final ArrayList<Float> pitchBuffer = new ArrayList<>();
+    private static final int PITCH_SMOOTHING_WINDOW = 5; // You can tune this value
 
     public ConstantExerciseFragment() {}
 
@@ -74,65 +83,64 @@ public class ConstantExerciseFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Settings button → opens settings screen
         binding.settingsIcon.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), SettingsActivity.class);
             startActivity(intent);
         });
 
-        // Menu button → navigates to home
         binding.imageButton.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.navigation_home);
         });
 
-        // Play button → starts exercise
         binding.PlayIcon.setOnClickListener(v -> {
             if (!isExerciseRunning) {
                 isExerciseRunning = true;
-                startPitchDetection();
-                binding.PlayIcon.setEnabled(false); // Disable to prevent re-clicks
-                binding.PlayIcon.setAlpha(0.5f);    // Visually dim it
+                binding.PlayIcon.setEnabled(false);
+                binding.PlayIcon.setAlpha(0.5f);
+                startCountdownBeforeExercise();
             }
         });
 
-        // Retry button → resets chart & state
-        binding.RetryIcon.setOnClickListener(v -> {
-            resetExercise();
-        });
+        binding.RetryIcon.setOnClickListener(v -> resetExercise());
 
-        // Setup chart and line
         pitchChart = binding.pitchChart;
         initChart();
-        drawTargetLine(targetPitch); // Initial horizontal line
-
+        drawTargetLine(targetPitch);
         pitchBall = binding.ball;
 
-        // Wait for layout to be drawn to capture Y bounds
         pitchChart.post(() -> {
             chartTopY = pitchChart.getTop();
             chartBottomY = pitchChart.getBottom();
         });
 
-        // Setup SeekBar to control target pitch
-        binding.verticalSeekBar.setMax(600); // Range: 50 Hz – 600 Hz
-        binding.verticalSeekBar.setProgress((int) targetPitch); // Set to initial value
-
+        binding.verticalSeekBar.setMax(600);
+        binding.verticalSeekBar.setProgress((int) targetPitch);
         binding.verticalSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (progress < 50) {
-                    progress = 50; // Clamp to minimum useful pitch
-                }
+            @Override public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (progress < 50) progress = 50;
                 targetPitch = progress;
                 drawTargetLine(targetPitch);
             }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+    }
+
+    private void startCountdownBeforeExercise() {
+        TextView countdownText = binding.countdownText;
+        countdownText.setVisibility(View.VISIBLE);
+        final String[] countdownVals = {"3", "2", "1"};
+
+        for (int i = 0; i < countdownVals.length; i++) {
+            final int index = i;
+            countdownHandler.postDelayed(() -> countdownText.setText(countdownVals[index]), i * 1000L);
+        }
+
+        countdownHandler.postDelayed(() -> countdownText.setText("Go!"), 3000L);
+        countdownHandler.postDelayed(() -> {
+            countdownText.setVisibility(View.GONE);
+            startPitchDetection();
+        }, 4000L);
     }
 
     private void resetExercise() {
@@ -147,8 +155,10 @@ public class ConstantExerciseFragment extends Fragment {
         pitchChart.notifyDataSetChanged();
         pitchChart.invalidate();
 
+        binding.exerciseProgressBar.setVisibility(View.GONE);
+        binding.exerciseProgressBar.setProgress(0);
         binding.PlayIcon.setImageResource(R.drawable.play_icon);
-        pitchBall.setY(pitchChart.getBottom() - pitchBall.getHeight() / 2f); // Reset ball to bottom
+        pitchBall.setY(pitchChart.getBottom() - pitchBall.getHeight() / 2f);
     }
 
     private void startPitchDetection() {
@@ -168,24 +178,40 @@ public class ConstantExerciseFragment extends Fragment {
             requireActivity().runOnUiThread(() -> updatePitchChart(pitchInHz));
         });
 
-        // Automatically stop after 30 seconds
+        ProgressBar progressBar = binding.exerciseProgressBar;
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setMax(EXERCISE_DURATION_MS);
+        progressBar.setProgress(0);
+
+        long startTime = System.currentTimeMillis();
+        progressRunnable = new Runnable() {
+            @Override public void run() {
+                long elapsed = System.currentTimeMillis() - startTime;
+                if (elapsed >= EXERCISE_DURATION_MS) {
+                    progressBar.setProgress(EXERCISE_DURATION_MS);
+                } else {
+                    progressBar.setProgress((int) elapsed);
+                    progressHandler.postDelayed(this, 50);
+                }
+            }
+        };
+        progressHandler.post(progressRunnable);
+
         stopRunnable = this::stopPitchDetection;
-        stopHandler.postDelayed(stopRunnable, 30_000);
+        stopHandler.postDelayed(stopRunnable, EXERCISE_DURATION_MS);
     }
 
     private void stopPitchDetection() {
         if (!isRecording) return;
 
         isRecording = false;
-        if (pitchDetector != null) {
-            pitchDetector.stop();
-        }
-
+        if (pitchDetector != null) pitchDetector.stop();
         stopHandler.removeCallbacks(stopRunnable);
+        progressHandler.removeCallbacks(progressRunnable);
 
-        // Reset button state
         binding.PlayIcon.setEnabled(true);
         binding.PlayIcon.setAlpha(1f);
+        binding.exerciseProgressBar.setVisibility(View.GONE);
 
         if (totalPoints > 0) {
             int percentage = (int) ((score / (float) totalPoints) * 100);
@@ -193,7 +219,6 @@ public class ConstantExerciseFragment extends Fragment {
         } else {
             Toast.makeText(requireContext(), "No valid pitch data recorded.", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     private void initChart() {
@@ -204,9 +229,7 @@ public class ConstantExerciseFragment extends Fragment {
         pitchDataSet.setDrawCircles(false);
         pitchDataSet.setDrawValues(false);
 
-        LineData lineData = new LineData(pitchDataSet);
-        pitchChart.setData(lineData);
-
+        pitchChart.setData(new LineData(pitchDataSet));
         pitchChart.getDescription().setEnabled(false);
         pitchChart.getLegend().setEnabled(false);
 
@@ -215,8 +238,7 @@ public class ConstantExerciseFragment extends Fragment {
         leftAxis.setAxisMaximum(600f);
         leftAxis.setTextColor(Color.BLACK);
 
-        YAxis rightAxis = pitchChart.getAxisRight();
-        rightAxis.setEnabled(false);
+        pitchChart.getAxisRight().setEnabled(false);
 
         XAxis xAxis = pitchChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -224,8 +246,7 @@ public class ConstantExerciseFragment extends Fragment {
         xAxis.setDrawGridLines(true);
         xAxis.setGranularity(0.5f);
         xAxis.setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getAxisLabel(float value, AxisBase axis) {
+            @Override public String getAxisLabel(float value, AxisBase axis) {
                 return String.format("%.1f", value);
             }
         });
@@ -233,7 +254,7 @@ public class ConstantExerciseFragment extends Fragment {
 
     private void drawTargetLine(float targetPitch) {
         LimitLine targetLine = new LimitLine(targetPitch, "Target: " + targetPitch + " Hz");
-        targetLine.setLineColor(Color.parseColor("#6C6879")); // Purple-ish
+        targetLine.setLineColor(Color.parseColor("#6C6879"));
         targetLine.setLineWidth(2f);
         targetLine.setTextColor(Color.parseColor("#6C6879"));
         targetLine.setTextSize(14f);
@@ -245,20 +266,35 @@ public class ConstantExerciseFragment extends Fragment {
     }
 
     private void updatePitchChart(float pitchInHz) {
-        if (pitchInHz > 0 && isRecording) {
-            pitchEntries.add(new Entry(time, pitchInHz));
-            time += 0.1f;
+        if (pitchInHz <= 0 || !isRecording) return;
 
-            pitchDataSet.notifyDataSetChanged();
-            pitchChart.getData().notifyDataChanged();
-            pitchChart.notifyDataSetChanged();
-            pitchChart.setVisibleXRangeMaximum(10f);
-            pitchChart.moveViewToX(time);
+        pitchEntries.add(new Entry(time, pitchInHz));
+        time += 0.1f;
 
-            movePitchBall(pitchInHz);
+        pitchDataSet.notifyDataSetChanged();
+        pitchChart.getData().notifyDataChanged();
+        pitchChart.notifyDataSetChanged();
+        pitchChart.setVisibleXRangeMaximum(10f);
+        pitchChart.moveViewToX(time);
 
+        // Smoothing buffer
+        pitchBuffer.add(pitchInHz);
+        if (pitchBuffer.size() > PITCH_SMOOTHING_WINDOW) {
+            pitchBuffer.remove(0);
+        }
+
+        // Score only if buffer is full
+        if (pitchBuffer.size() == PITCH_SMOOTHING_WINDOW) {
+            float sum = 0f;
+            for (float val : pitchBuffer) sum += val;
+            float smoothedPitch = sum / pitchBuffer.size();
+
+            movePitchBall(smoothedPitch);
+
+            // Scoring: use dynamic tolerance (e.g., ±5% of target pitch)
+            float dynamicTolerance = targetPitch * 0.05f;
             totalPoints++;
-            if (Math.abs(pitchInHz - targetPitch) <= TOLERANCE) {
+            if (Math.abs(smoothedPitch - targetPitch) <= dynamicTolerance) {
                 score++;
             }
         }
@@ -269,11 +305,8 @@ public class ConstantExerciseFragment extends Fragment {
 
         float minPitch = 50f;
         float maxPitch = 600f;
-
-        // Clamp pitch to valid range
         pitchInHz = Math.max(minPitch, Math.min(maxPitch, pitchInHz));
 
-        //Calculate vertical position in chart
         float chartHeight = chartBottomY - chartTopY;
         float relativePitch = (pitchInHz - minPitch) / (maxPitch - minPitch);
         float ballY = chartBottomY - (relativePitch * chartHeight);
@@ -285,7 +318,6 @@ public class ConstantExerciseFragment extends Fragment {
     public void onResume() {
         super.onResume();
         requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
     }
 
     @Override
@@ -293,7 +325,6 @@ public class ConstantExerciseFragment extends Fragment {
         super.onPause();
         requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         stopPitchDetection();
-
     }
 
     @Override
